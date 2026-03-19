@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>PBW 2026 — Marge Free Tickets</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1117; color: #e0e0e0; padding: 40px; max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 28px; color: #fff; margin-bottom: 6px; }
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 36px; }
+  .section { margin-bottom: 40px; }
+  .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 8px; font-weight: 600; }
+  .section-desc { font-size: 14px; color: #aaa; margin-bottom: 18px; line-height: 1.6; }
+  .cards { display: flex; gap: 16px; flex-wrap: wrap; }
+  .card { background: #1a1d27; border-radius: 12px; padding: 24px; flex: 1; min-width: 180px; border: 1px solid #2a2d37; }
+  .card .label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .card .value { font-size: 36px; font-weight: 700; color: #fff; }
+  .card .detail { font-size: 13px; color: #666; margin-top: 6px; line-height: 1.5; }
+  .breakdown { background: #1a1d27; border-radius: 12px; padding: 28px; border: 1px solid #2a2d37; }
+  .breakdown table { width: 100%; border-collapse: collapse; }
+  .breakdown th { text-align: left; font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; padding: 8px 12px; border-bottom: 1px solid #2a2d37; }
+  .breakdown td { padding: 14px 12px; font-size: 15px; border-bottom: 1px solid #1f222d; vertical-align: top; }
+  .breakdown tr:last-child td { border-bottom: none; }
+  .breakdown .cat { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+  .breakdown .num { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .breakdown .explain { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.5; }
+  .breakdown .total-row td { border-top: 2px solid #4f8cff; font-weight: 700; font-size: 16px; color: #fff; padding-top: 16px; }
+  .target-section { display: flex; gap: 20px; margin-top: 8px; }
+  .target-card { flex: 1; background: #1a1d27; border-radius: 12px; padding: 28px; border: 1px solid #2a2d37; }
+  .target-card h3 { font-size: 18px; margin-bottom: 4px; }
+  .target-card .date { color: #888; font-size: 13px; margin-bottom: 20px; }
+  .target-card .formula { background: #12141c; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 2; }
+  .target-card .formula .line { display: flex; justify-content: space-between; }
+  .target-card .formula .sep { border-top: 1px solid #2a2d37; margin: 6px 0; }
+  .target-card .formula .result { font-weight: 700; color: #fff; font-size: 16px; }
+  .gauge { margin-top: 20px; }
+  .gauge-bar { width: 100%; height: 36px; background: #12141c; border-radius: 8px; overflow: hidden; display: flex; }
+  .gauge-bar .segment { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; }
+  .gauge-legend { display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
+  .gauge-legend .item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #aaa; }
+  .gauge-legend .dot { width: 10px; height: 10px; border-radius: 3px; }
+  .callout { margin-top: 20px; border-radius: 8px; padding: 18px 20px; font-size: 14px; line-height: 1.6; }
+  .callout-orange { background: #2a1f10; border: 1px solid #5c3a16; color: #fbbf70; }
+  .callout-green { background: #0f2a1a; border: 1px solid #16532d; color: #6ee7a0; }
+  .note { margin-top: 32px; background: #1c1a10; border: 1px solid #4a4520; border-radius: 8px; padding: 20px; font-size: 13px; color: #d4c870; line-height: 1.7; }
+  .note strong { color: #e8dc80; }
+  .note ul { margin: 8px 0 0 18px; }
+  .note li { margin-bottom: 6px; }
+  .green { color: #4ade80; } .orange { color: #fb923c; } .blue { color: #4f8cff; }
+  .purple { color: #a78bfa; } .yellow { color: #fbbf24; } .red { color: #f87171; } .gray { color: #9ca3af; }
+  .bg-red { background: #5c1a1a; color: #f87171; } .bg-yellow { background: #5c4a16; color: #fbbf24; }
+  .bg-purple { background: #2e1f5e; color: #a78bfa; } .bg-green { background: #16532d; color: #4ade80; }
+  .bg-blue { background: #1a3a5c; color: #4f8cff; } .bg-orange { background: #5c3a16; color: #fb923c; }
+  .bg-gray { background: #2a2d37; color: #9ca3af; }
+  .how-it-works { background: #141620; border: 1px solid #2a2d37; border-radius: 12px; padding: 28px; margin-bottom: 36px; }
+  .how-it-works h2 { font-size: 16px; color: #fff; margin-bottom: 14px; }
+  .how-it-works p { font-size: 14px; color: #aaa; line-height: 1.7; margin-bottom: 12px; }
+  .how-it-works .formula-simple { background: #0f1117; border-radius: 8px; padding: 14px 20px; font-size: 15px; color: #fff; text-align: center; margin: 18px 0; font-weight: 600; letter-spacing: 0.5px; }
+  .how-it-works .formula-simple span { padding: 2px 8px; border-radius: 4px; margin: 0 2px; }
+  .how-it-works .explain-cats { margin: 14px 0 0 0; font-size: 13px; color: #999; line-height: 2; }
+</style>
+</head>
+<body>
+<h1>Paris Blockchain Week 2026</h1>
+<p class="subtitle">Marge de manoeuvre Free Tickets &mdash; Snapshot du 19 mars 2026 &bull; 1 500 inscrits</p>
+<div class="how-it-works">
+  <h2>La logique du calcul</h2>
+  <p>On veut savoir : <strong>combien de billets gratuits peut-on encore distribuer sans d&eacute;passer la capacit&eacute; de la salle ?</strong></p>
+  <p>Pour &ccedil;a, on part de la capacit&eacute; cible et on enl&egrave;ve tout ce qui est d&eacute;j&agrave; r&eacute;serv&eacute; ou promis &mdash; y compris les places qui ne sont pas encore claim&eacute;es mais qui vont l'&ecirc;tre (sponsors, speakers &agrave; venir).</p>
+  <div class="formula-simple">
+    <span style="background:#16532d;">Marge Free dispo</span> &nbsp;=&nbsp;
+    Capacit&eacute; cible &nbsp;&minus;&nbsp;
+    <span style="background:#3b4a8a;">Tickets engag&eacute;s</span> &nbsp;&minus;&nbsp;
+    <span style="background:#22543d;">Free d&eacute;j&agrave; distribu&eacute;s</span>
+  </div>
+  <div class="explain-cats">
+    <span class="red">&bull;</span> <strong style="color:#ccc;">Paid</strong> = Billets vendus (Delegates + Start-ups). Compt&eacute;s au r&eacute;el : 411 inscrits aujourd'hui.<br>
+    <span class="yellow">&bull;</span> <strong style="color:#ccc;">Sponsors</strong> = On prend les <strong style="color:#fbbf24;">895 allou&eacute;s</strong> dans les contrats, pas les 296 claimed. Ces places sont r&eacute;serv&eacute;es, les gens arrivent au fil de l'eau.<br>
+    <span class="purple">&bull;</span> <strong style="color:#ccc;">Speakers</strong> = 87 inscrits + environ 60 &agrave; venir = <strong style="color:#a78bfa;">147 estim&eacute;s</strong>.
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">&Eacute;tape 1 &mdash; Tickets engag&eacute;s (vendus + r&eacute;serv&eacute;s + pr&eacute;vus)</div>
+  <div class="section-desc">Ces billets sont pris &mdash; vendus ou allou&eacute;s contractuellement. On les compte <strong>en totalit&eacute;</strong>, m&ecirc;me si tout le monde ne s'est pas encore inscrit.</div>
+  <div class="breakdown">
+    <table>
+      <thead>
+        <tr><th style="width:20%;">Cat&eacute;gorie</th><th style="width:24%;">O&ugrave; on en est</th><th style="width:40%;">Pourquoi ce chiffre ?</th><th class="num" style="width:16%;">&Agrave; compter</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat bg-red">Paid</span></td>
+          <td>411 inscrits</td>
+          <td><div class="explain">Tous les billets pay&eacute;s : PRO Delegate, VIP Delegate, Start-ups, Super Early Bird, invoices&hellip; On ne peut pas pr&eacute;dire les futures ventes, donc on prend le r&eacute;el.</div></td>
+          <td class="num">411</td>
+        </tr>
+        <tr>
+          <td><span class="cat bg-yellow">Sponsors</span></td>
+          <td>296 <span class="gray">/ 895</span></td>
+          <td><div class="explain">70 sponsors ont <strong style="color:#ccc;">895 tickets allou&eacute;s</strong> dans leurs contrats. Seulement 296 ont &eacute;t&eacute; claim&eacute;s (33%). Les 599 restants sont r&eacute;serv&eacute;s et vont se remplir progressivement &rarr; on bloque les 895.</div></td>
+          <td class="num yellow">895</td>
+        </tr>
+        <tr>
+          <td><span class="cat bg-purple">Speakers</span></td>
+          <td>87 <span class="gray">+ ~60 attendus</span></td>
+          <td><div class="explain">87 speakers inscrits. Estimation de ~60 inscriptions suppl&eacute;mentaires d'apr&egrave;s le pipeline speakers.</div></td>
+          <td class="num purple">147</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3">TOTAL ENGAG&Eacute;</td>
+          <td class="num">1 453</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">&Eacute;tape 2 &mdash; Free tickets d&eacute;j&agrave; distribu&eacute;s</div>
+  <div class="section-desc">Billets gratuits d&eacute;j&agrave; envoy&eacute;s. Ces personnes sont inscrites et comptent dans nos 1 500 actuels.</div>
+  <div class="breakdown">
+    <table>
+      <thead>
+        <tr><th style="width:20%;">Cat&eacute;gorie</th><th class="num" style="width:14%;">Nombre</th><th>Qui sont-ils ?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="cat bg-green">Partners</span></td><td class="num">500</td><td><div class="explain">&Eacute;cosyst&egrave;me, PRO Guest, invitations LUMA, guests VIP, toutes les invitations gratuites hors cat&eacute;gories sp&eacute;cifiques.</div></td></tr>
+        <tr><td><span class="cat bg-blue">Dev</span></td><td class="num">102</td><td><div class="explain">Campagne d&eacute;veloppeurs lanc&eacute;e le 17/03. Tickets "PRO Guest &ndash; Website Free" inscrits depuis cette date, sans code promo sponsor.</div></td></tr>
+        <tr><td><span class="cat bg-orange">Media</span></td><td class="num">81</td><td><div class="explain">Journalistes, m&eacute;dias, &eacute;quipes de production (Bitcoin.com, etc.).</div></td></tr>
+        <tr><td><span class="cat bg-gray">Students</span></td><td class="num">24</td><td><div class="explain">Campagne &eacute;coles (21 SCHOOL CAMPAIGN) + bourses Scholarship (3).</div></td></tr>
+        <tr class="total-row"><td>TOTAL FREE</td><td class="num">707</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">&Eacute;tape 3 &mdash; R&eacute;sultat : combien de free tickets peut-on encore envoyer ?</div>
+  <div class="target-section">
+    <div class="target-card" style="border-color: #fb923c;">
+      <h3 class="orange">Objectif 30 mars</h3>
+      <div class="date">3 000 personnes minimum &bull; J-11</div>
+      <div class="formula">
+        <div class="line"><span>Capacit&eacute; cible</span><span>3 000</span></div>
+        <div class="line"><span class="gray">&minus; Paid (411)</span><span class="gray">&minus; 411</span></div>
+        <div class="line"><span class="gray">&minus; Sponsors (895 allou&eacute;s)</span><span class="gray">&minus; 895</span></div>
+        <div class="line"><span class="gray">&minus; Speakers (~147)</span><span class="gray">&minus; 147</span></div>
+        <div class="sep"></div>
+        <div class="line"><span style="color:#ccc;">Budget max Free</span><span style="color:#ccc;">1 547</span></div>
+        <div class="line"><span class="gray">&minus; Free d&eacute;j&agrave; distribu&eacute;s</span><span class="gray">&minus; 707</span></div>
+        <div class="sep"></div>
+        <div class="line result"><span>MARGE RESTANTE</span><span class="orange" style="font-size:24px;">840</span></div>
+      </div>
+      <div class="gauge">
+        <div class="gauge-bar">
+          <div class="segment" style="width:48.4%; background:#3b4a8a;">Engag&eacute;s &bull; 1 453</div>
+          <div class="segment" style="width:23.6%; background:#22543d;">Free &bull; 707</div>
+          <div class="segment" style="width:28%; background:#5c3a16;">Dispo &bull; 840</div>
+        </div>
+      </div>
+      <div class="callout callout-orange">
+        <strong>Il faut distribuer ~76 free tickets/jour</strong> d'ici le 30 mars pour atteindre 3 000. C'est serr&eacute; &mdash; il faut pousser les campagnes Dev, Students et partenaires &eacute;cosyst&egrave;me d&egrave;s maintenant.
+      </div>
+    </div>
+    <div class="target-card" style="border-color: #4ade80;">
+      <h3 class="green">Objectif 14 avril</h3>
+      <div class="date">5 000 personnes &bull; J-26</div>
+      <div class="formula">
+        <div class="line"><span>Capacit&eacute; cible</span><span>5 000</span></div>
+        <div class="line"><span class="gray">&minus; Paid (411)</span><span class="gray">&minus; 411</span></div>
+        <div class="line"><span class="gray">&minus; Sponsors (895 allou&eacute;s)</span><span class="gray">&minus; 895</span></div>
+        <div class="line"><span class="gray">&minus; Speakers (~147)</span><span class="gray">&minus; 147</span></div>
+        <div class="sep"></div>
+        <div class="line"><span style="color:#ccc;">Budget max Free</span><span style="color:#ccc;">3 547</span></div>
+        <div class="line"><span class="gray">&minus; Free d&eacute;j&agrave; distribu&eacute;s</span><span class="gray">&minus; 707</span></div>
+        <div class="sep"></div>
+        <div class="line result"><span>MARGE RESTANTE</span><span class="green" style="font-size:24px;">2 840</span></div>
+      </div>
+      <div class="gauge">
+        <div class="gauge-bar">
+          <div class="segment" style="width:29.1%; background:#3b4a8a;">Engag&eacute;s &bull; 1 453</div>
+          <div class="segment" style="width:14.1%; background:#22543d;">Free &bull; 707</div>
+          <div class="segment" style="width:56.8%; background:#16532d;">Dispo &bull; 2 840</div>
+        </div>
+      </div>
+      <div class="callout callout-green">
+        <strong>Confortable : ~109 free tickets/jour</strong> sur 26 jours. La marge est large, mais chaque vente Paid suppl&eacute;mentaire la r&eacute;duit d'autant. Si les sponsors claim plus que pr&eacute;vu, c'est d&eacute;j&agrave; compt&eacute;.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note">
+  <strong>Hypoth&egrave;ses et points d'attention :</strong>
+  <ul>
+    <li><strong>Paid (411)</strong> &mdash; Compt&eacute; au r&eacute;el. Chaque nouvelle vente r&eacute;duit la marge de 1. Si on vend 100 billets de plus, la marge 30 mars tombe &agrave; 740.</li>
+    <li><strong>Sponsors (895)</strong> &mdash; Sc&eacute;nario conservateur : on bloque tous les tickets allou&eacute;s. En pratique, certains sponsors ne clameront pas 100% &rarr; la marge r&eacute;elle pourrait &ecirc;tre un peu meilleure.</li>
+    <li><strong>Speakers (147)</strong> &mdash; Estimation. Si le chiffre r&eacute;el est diff&eacute;rent, ajuster en cons&eacute;quence.</li>
+    <li><strong>Pas de no-show</strong> &mdash; On suppose que tout le monde vient. Le jour J, les no-shows lib&egrave;rent de la capacit&eacute;, mais on ne peut pas miser dessus pour la planification.</li>
+  </ul>
+</div>
+</body>
+</html>
