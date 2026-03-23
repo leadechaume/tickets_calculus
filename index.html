@@ -7,12 +7,9 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, 'Segoe UI', Arial, sans-serif; background: #0b0d11; color: #c8ccd4; padding: 48px 40px; max-width: 960px; margin: 0 auto; }
-
   .header { margin-bottom: 48px; }
   .header h1 { font-size: 22px; color: #fff; font-weight: 700; margin-bottom: 4px; }
   .header p { font-size: 13px; color: #666; }
-
-  /* TOP KPI STRIP */
   .kpi-strip { display: flex; gap: 12px; margin-bottom: 48px; }
   .kpi { flex: 1; background: #13161e; border-radius: 14px; padding: 24px; text-align: center; border: 1px solid #1e2230; }
   .kpi .number { font-size: 42px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
@@ -21,18 +18,14 @@
   .kpi.accent-orange .number { color: #fb923c; }
   .kpi.accent-green { border-color: #16532d; }
   .kpi.accent-green .number { color: #4ade80; }
-
-  /* DONUT / COMPOSITION */
   .composition { margin-bottom: 48px; }
   .composition h2 { font-size: 13px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; font-weight: 600; }
   .bar-stack { display: flex; height: 48px; border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
-  .bar-stack .seg { display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; transition: width 0.4s; }
+  .bar-stack .seg { display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; }
   .legend { display: flex; flex-wrap: wrap; gap: 6px 20px; }
   .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #888; }
   .legend-item .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
   .legend-item strong { color: #bbb; }
-
-  /* FORMULA BOX */
   .formula-section { margin-bottom: 48px; }
   .formula-section h2 { font-size: 13px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; font-weight: 600; }
   .formula-box { background: #13161e; border-radius: 14px; border: 1px solid #1e2230; overflow: hidden; }
@@ -42,10 +35,6 @@
   .formula-row.dim { color: #555; }
   .formula-row.dim .val { color: #777; }
   .formula-row.sep { padding: 0; height: 2px; background: #2a2d3a; }
-  .formula-row.result { background: #161a24; }
-  .formula-row.result .label-text { font-weight: 700; color: #fff; font-size: 16px; }
-
-  /* TARGET CARDS */
   .targets { display: flex; gap: 16px; margin-bottom: 48px; }
   .target { flex: 1; border-radius: 14px; padding: 32px 28px; text-align: center; }
   .target.t-orange { background: linear-gradient(160deg, #1f1710 0%, #13161e 100%); border: 1px solid #3d2a12; }
@@ -59,12 +48,8 @@
   .target.t-orange .t-pace { background: #2a1f10; color: #fbbf70; }
   .target.t-green .t-big { color: #4ade80; }
   .target.t-green .t-pace { background: #0f2a1a; color: #6ee7a0; }
-
-  /* GAUGE */
   .gauge-row { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 20px; }
   .gauge-row .g { height: 100%; }
-
-  /* ASSUMPTIONS */
   .assumptions { background: #13161e; border-radius: 14px; padding: 24px 28px; border: 1px solid #1e2230; }
   .assumptions h3 { font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; font-weight: 600; }
   .assumptions p { font-size: 13px; color: #666; line-height: 1.7; margin-bottom: 6px; }
@@ -72,129 +57,83 @@
 </style>
 </head>
 <body>
-
 <div class="header">
   <h1>PBW 2026 &mdash; Free Ticket Budget</h1>
-  <p>Snapshot &bull; March 19, 2026 &bull; 1,500 registered</p>
+  <p>Snapshot &bull; March 23, 2026 &bull; 1,630 registered</p>
 </div>
-
-<!-- TOP KPIs -->
 <div class="kpi-strip">
-  <div class="kpi">
-    <div class="number">1,500</div>
-    <div class="label">Registered today</div>
-  </div>
-  <div class="kpi">
-    <div class="number">1,453</div>
-    <div class="label">Committed tickets</div>
-  </div>
-  <div class="kpi">
-    <div class="number">707</div>
-    <div class="label">Free sent out</div>
-  </div>
-  <div class="kpi accent-orange">
-    <div class="number">840</div>
-    <div class="label">Free left &bull; Mar 30</div>
-  </div>
-  <div class="kpi accent-green">
-    <div class="number">2,840</div>
-    <div class="label">Free left &bull; Apr 14</div>
-  </div>
+  <div class="kpi"><div class="number">1,630</div><div class="label">Registered today</div></div>
+  <div class="kpi"><div class="number">1,467</div><div class="label">Committed tickets</div></div>
+  <div class="kpi"><div class="number">808</div><div class="label">Free sent out</div></div>
+  <div class="kpi accent-orange"><div class="number">725</div><div class="label">Free left &bull; Mar 30</div></div>
+  <div class="kpi accent-green"><div class="number">2,725</div><div class="label">Free left &bull; Apr 14</div></div>
 </div>
-
-<!-- COMPOSITION BAR -->
 <div class="composition">
   <h2>Current registrations by type</h2>
   <div class="bar-stack">
-    <div class="seg" style="width:27.4%; background:#e05555;">411</div>
-    <div class="seg" style="width:19.7%; background:#e8a838;">295</div>
-    <div class="seg" style="width:5.8%; background:#9b6dd7;">87</div>
-    <div class="seg" style="width:33.3%; background:#3a9a5c;">500</div>
-    <div class="seg" style="width:6.8%; background:#3b8cd4;">102</div>
-    <div class="seg" style="width:5.4%; background:#8b6aaf;">81</div>
-    <div class="seg" style="width:1.6%; background:#607080;">24</div>
+    <div class="seg" style="width:26.1%;background:#e05555;">425</div>
+    <div class="seg" style="width:18.6%;background:#e8a838;">303</div>
+    <div class="seg" style="width:5.8%;background:#9b6dd7;">94</div>
+    <div class="seg" style="width:31.8%;background:#3a9a5c;">519</div>
+    <div class="seg" style="width:9.3%;background:#3b8cd4;">151</div>
+    <div class="seg" style="width:5.4%;background:#8b6aaf;">88</div>
+    <div class="seg" style="width:3.1%;background:#607080;">50</div>
   </div>
   <div class="legend">
-    <div class="legend-item"><div class="dot" style="background:#e05555;"></div><strong>411</strong> Paid</div>
-    <div class="legend-item"><div class="dot" style="background:#e8a838;"></div><strong>295</strong> Sponsors</div>
-    <div class="legend-item"><div class="dot" style="background:#9b6dd7;"></div><strong>87</strong> Speakers</div>
-    <div class="legend-item"><div class="dot" style="background:#3a9a5c;"></div><strong>500</strong> Partners</div>
-    <div class="legend-item"><div class="dot" style="background:#3b8cd4;"></div><strong>102</strong> Dev</div>
-    <div class="legend-item"><div class="dot" style="background:#8b6aaf;"></div><strong>81</strong> Media</div>
-    <div class="legend-item"><div class="dot" style="background:#607080;"></div><strong>24</strong> Students</div>
+    <div class="legend-item"><div class="dot" style="background:#e05555;"></div><strong>425</strong> Paid</div>
+    <div class="legend-item"><div class="dot" style="background:#e8a838;"></div><strong>303</strong> Sponsors</div>
+    <div class="legend-item"><div class="dot" style="background:#9b6dd7;"></div><strong>94</strong> Speakers</div>
+    <div class="legend-item"><div class="dot" style="background:#3a9a5c;"></div><strong>519</strong> Partners</div>
+    <div class="legend-item"><div class="dot" style="background:#3b8cd4;"></div><strong>151</strong> Dev</div>
+    <div class="legend-item"><div class="dot" style="background:#8b6aaf;"></div><strong>88</strong> Media</div>
+    <div class="legend-item"><div class="dot" style="background:#607080;"></div><strong>50</strong> Students</div>
   </div>
 </div>
-
-<!-- HOW WE CALCULATE -->
 <div class="formula-section">
   <h2>How we calculate the free ticket budget</h2>
   <div class="formula-box">
-    <div class="formula-row">
-      <span class="label-text">Paid tickets <span style="color:#555;">(sold &mdash; actual)</span></span>
-      <span class="val">411</span>
-    </div>
-    <div class="formula-row">
-      <span class="label-text">Sponsor tickets <span style="color:#555;">(895 allocated in contracts, 296 claimed so far)</span></span>
-      <span class="val" style="color:#e8a838;">895</span>
-    </div>
-    <div class="formula-row">
-      <span class="label-text">Speaker tickets <span style="color:#555;">(87 registered + ~60 expected)</span></span>
-      <span class="val" style="color:#9b6dd7;">147</span>
-    </div>
+    <div class="formula-row"><span class="label-text">Paid tickets <span style="color:#555;">(sold &mdash; actual)</span></span><span class="val">425</span></div>
+    <div class="formula-row"><span class="label-text">Sponsor tickets <span style="color:#555;">(895 allocated in contracts, 305 claimed so far)</span></span><span class="val" style="color:#e8a838;">895</span></div>
+    <div class="formula-row"><span class="label-text">Speaker tickets <span style="color:#555;">(94 registered + ~53 expected)</span></span><span class="val" style="color:#9b6dd7;">147</span></div>
     <div class="formula-row sep"></div>
-    <div class="formula-row">
-      <span class="label-text" style="color:#fff; font-weight:600;">Total committed</span>
-      <span class="val" style="color:#fff; font-size:17px;">1,453</span>
-    </div>
-    <div class="formula-row dim">
-      <span class="label-text">Free tickets already sent out</span>
-      <span class="val">&minus; 707</span>
-    </div>
+    <div class="formula-row"><span class="label-text" style="color:#fff;font-weight:600;">Total committed</span><span class="val" style="color:#fff;font-size:17px;">1,467</span></div>
+    <div class="formula-row dim"><span class="label-text">Free tickets already sent out</span><span class="val">&minus; 808</span></div>
   </div>
 </div>
-
-<!-- TARGET CARDS -->
 <div class="targets">
   <div class="target t-orange">
     <div class="t-label">Target &bull; March 30</div>
-    <div class="t-date">3,000 attendees &bull; 11 days left</div>
-    <div class="t-big">840</div>
+    <div class="t-date">3,000 attendees &bull; 7 days left</div>
+    <div class="t-big">725</div>
     <div class="t-unit">free tickets still available</div>
     <div class="gauge-row">
-      <div class="g" style="width:48.4%; background:#3b4a8a;"></div>
-      <div class="g" style="width:23.6%; background:#22543d;"></div>
-      <div class="g" style="width:28%; background:#5c3a16;"></div>
+      <div class="g" style="width:48.9%;background:#3b4a8a;"></div>
+      <div class="g" style="width:26.9%;background:#22543d;"></div>
+      <div class="g" style="width:24.2%;background:#5c3a16;"></div>
     </div>
-    <div style="display:flex; justify-content:space-between; font-size:10px; color:#555; margin-top:4px; padding:0 2px;">
-      <span>Committed</span><span>Sent</span><span>Available</span>
-    </div>
-    <div class="t-pace" style="margin-top:16px;">~76 free tickets / day needed</div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#555;margin-top:4px;padding:0 2px;"><span>Committed</span><span>Sent</span><span>Available</span></div>
+    <div class="t-pace" style="margin-top:16px;">~104 free tickets / day needed</div>
   </div>
   <div class="target t-green">
     <div class="t-label">Target &bull; April 14</div>
-    <div class="t-date">5,000 attendees &bull; 26 days left</div>
-    <div class="t-big">2,840</div>
+    <div class="t-date">5,000 attendees &bull; 22 days left</div>
+    <div class="t-big">2,725</div>
     <div class="t-unit">free tickets still available</div>
     <div class="gauge-row">
-      <div class="g" style="width:29.1%; background:#3b4a8a;"></div>
-      <div class="g" style="width:14.1%; background:#22543d;"></div>
-      <div class="g" style="width:56.8%; background:#16532d;"></div>
+      <div class="g" style="width:29.3%;background:#3b4a8a;"></div>
+      <div class="g" style="width:16.2%;background:#22543d;"></div>
+      <div class="g" style="width:54.5%;background:#16532d;"></div>
     </div>
-    <div style="display:flex; justify-content:space-between; font-size:10px; color:#555; margin-top:4px; padding:0 2px;">
-      <span>Committed</span><span>Sent</span><span>Available</span>
-    </div>
-    <div class="t-pace" style="margin-top:16px;">~109 free tickets / day needed</div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#555;margin-top:4px;padding:0 2px;"><span>Committed</span><span>Sent</span><span>Available</span></div>
+    <div class="t-pace" style="margin-top:16px;">~124 free tickets / day needed</div>
   </div>
 </div>
-
-<!-- ASSUMPTIONS -->
 <div class="assumptions">
   <h3>Assumptions</h3>
-  <p><span class="hl">Paid (411)</span> &mdash; Actual count. Every new sale reduces the free budget by 1.</p>
-  <p><span class="hl">Sponsors (895)</span> &mdash; Full contract allocation, not just the 296 claimed. Conservative: if sponsors don't use all their tickets, actual margin will be slightly higher.</p>
-  <p><span class="hl">Speakers (147)</span> &mdash; 87 registered + ~60 estimated. Adjust if pipeline changes.</p>
+  <p><span class="hl">Paid (425)</span> &mdash; Actual count. Every new sale reduces the free budget by 1.</p>
+  <p><span class="hl">Sponsors (895)</span> &mdash; Full contract allocation, not just the 305 claimed. Conservative: if sponsors don't use all their tickets, actual margin will be slightly higher.</p>
+  <p><span class="hl">Speakers (147)</span> &mdash; 94 registered + ~53 estimated. Adjust if pipeline changes.</p>
   <p><span class="hl">No-shows</span> &mdash; Not factored in. Real-day capacity may be slightly better.</p>
 </div>
-
 </body>
 </html>
