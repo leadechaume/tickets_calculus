@@ -10,23 +10,29 @@
   .header { margin-bottom: 40px; }
   .header h1 { font-size: 22px; color: #fff; font-weight: 700; margin-bottom: 4px; }
   .header p { font-size: 13px; color: #666; }
+
+  /* HERO */
   .hero { text-align: center; margin-bottom: 48px; padding: 40px 20px; background: linear-gradient(160deg, #0f1f16 0%, #13161e 100%); border-radius: 16px; border: 1px solid #1a4a2a; }
   .hero .big-number { font-size: 96px; font-weight: 900; color: #4ade80; line-height: 1; font-variant-numeric: tabular-nums; }
   .hero .hero-label { font-size: 16px; color: #aaa; margin-top: 10px; }
   .hero .hero-sub { font-size: 13px; color: #555; margin-top: 6px; }
+
+  /* KPI STRIP */
   .kpi-strip { display: flex; gap: 12px; margin-bottom: 48px; }
   .kpi { flex: 1; background: #13161e; border-radius: 14px; padding: 20px 16px; text-align: center; border: 1px solid #1e2230; }
   .kpi .number { font-size: 32px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
   .kpi .label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 1.2px; }
   .kpi.highlight { border-color: #16532d; }
   .kpi.highlight .number { color: #4ade80; }
+
+  /* FORMULA TABLE */
   .formula-section { margin-bottom: 48px; }
   .formula-section h2 { font-size: 13px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; font-weight: 600; }
   .formula-box { background: #13161e; border-radius: 14px; border: 1px solid #1e2230; overflow: hidden; }
   .formula-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; font-size: 14px; }
   .formula-row:not(:last-child) { border-bottom: 1px solid #1a1d28; }
   .formula-row .val { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 60px; text-align: right; }
-  .formula-row .detail { color: #555; font-size: 12px; }
+  .formula-row .now { font-size: 12px; color: #555; margin-left: 6px; }
   .formula-row.sep { padding: 0; height: 2px; background: #2a2d3a; }
   .formula-row.total { background: #161a24; }
   .formula-row.total .label-text { font-weight: 700; color: #fff; font-size: 15px; }
@@ -34,6 +40,9 @@
   .formula-row.result { background: #0f1f16; }
   .formula-row.result .label-text { font-weight: 700; color: #4ade80; font-size: 15px; }
   .formula-row.result .val { color: #4ade80; font-size: 18px; }
+  .formula-row .detail { color: #555; font-size: 12px; }
+
+  /* COMPOSITION BAR */
   .composition { margin-bottom: 48px; }
   .composition h2 { font-size: 13px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; font-weight: 600; }
   .bar-stack { display: flex; height: 40px; border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
@@ -42,6 +51,8 @@
   .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #888; }
   .legend-item .dot { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
   .legend-item strong { color: #bbb; }
+
+  /* ASSUMPTIONS */
   .assumptions { background: #13161e; border-radius: 14px; padding: 24px 28px; border: 1px solid #1e2230; }
   .assumptions h3 { font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; font-weight: 600; }
   .assumptions p { font-size: 12px; color: #555; line-height: 1.7; margin-bottom: 4px; }
@@ -49,79 +60,143 @@
 </style>
 </head>
 <body>
+
 <div class="header">
   <h1>PBW 2026 &mdash; Free Ticket Budget for Michael</h1>
-  <p>Snapshot &bull; March 23, 2026 &bull; Target: 5,000 attendees by April 14</p>
+  <p>Snapshot &bull; March 25, 2026 &bull; Target: 4,300 attendees by April 14</p>
 </div>
+
+<!-- HERO NUMBER -->
 <div class="hero">
-  <div class="big-number">2,223</div>
-  <div class="hero-label">additional free tickets to distribute to reach 5,000</div>
-  <div class="hero-sub">5,000 target &minus; 2,777 committed = 2,223 remaining</div>
+  <div class="big-number">1,366</div>
+  <div class="hero-label">additional free tickets to distribute to reach 4,300</div>
+  <div class="hero-sub">4,300 target &minus; 2,934 committed = 1,366 remaining</div>
 </div>
+
+<!-- KPI CONTEXT -->
 <div class="kpi-strip">
-  <div class="kpi"><div class="number">1,671</div><div class="label">Registered now</div></div>
-  <div class="kpi"><div class="number">2,777</div><div class="label">Committed (est.)</div></div>
-  <div class="kpi"><div class="number">5,000</div><div class="label">Target Apr 14</div></div>
-  <div class="kpi highlight"><div class="number">2,223</div><div class="label">Free to give</div></div>
+  <div class="kpi">
+    <div class="number">1,947</div>
+    <div class="label">Registered now</div>
+  </div>
+  <div class="kpi">
+    <div class="number">2,934</div>
+    <div class="label">Committed (est.)</div>
+  </div>
+  <div class="kpi">
+    <div class="number">4,300</div>
+    <div class="label">Target Apr 14</div>
+  </div>
+  <div class="kpi highlight">
+    <div class="number">1,366</div>
+    <div class="label">Free to give</div>
+  </div>
 </div>
+
+<!-- COMMITTED BREAKDOWN -->
 <div class="formula-section">
   <h2>Step 1 &mdash; Committed tickets (guaranteed seats)</h2>
   <div class="formula-box">
-    <div class="formula-row"><span class="label-text">Paid tickets <span class="detail">(projection &mdash; 425 sold today)</span></span><span class="val">700</span></div>
-    <div class="formula-row"><span class="label-text">Sponsor tickets <span class="detail">(941 allocated &mdash; 326 claimed so far)</span></span><span class="val" style="color:#e8a838;">941</span></div>
-    <div class="formula-row"><span class="label-text">Speakers <span class="detail">(non-sponsor &mdash; 96 reg. + ~55 expected)</span></span><span class="val" style="color:#9b6dd7;">151</span></div>
-    <div class="formula-row"><span class="label-text">Media / Press <span class="detail">(internal quota &mdash; 89 registered today)</span></span><span class="val" style="color:#8b6aaf;">450</span></div>
-    <div class="formula-row"><span class="label-text">Ambassadors <span class="detail">(LUMA &mdash; 212 registered today)</span></span><span class="val" style="color:#3a9a5c;">250</span></div>
-    <div class="formula-row"><span class="label-text">Dev campaign <span class="detail">(ongoing since Mar 17)</span></span><span class="val" style="color:#3b8cd4;">165</span></div>
-    <div class="formula-row"><span class="label-text">Speaker +1 / VIP codes <span class="detail">(partner codes)</span></span><span class="val">70</span></div>
-    <div class="formula-row"><span class="label-text">Students <span class="detail">(school campaign)</span></span><span class="val" style="color:#607080;">50</span></div>
+    <div class="formula-row">
+      <span class="label-text">Paid tickets <span class="detail">(projection &mdash; 437 sold today)</span></span>
+      <span class="val">700</span>
+    </div>
+    <div class="formula-row">
+      <span class="label-text">Sponsor tickets <span class="detail">(941 allocated &mdash; 381 claimed so far)</span></span>
+      <span class="val" style="color:#e8a838;">941</span>
+    </div>
+    <div class="formula-row">
+      <span class="label-text">Speakers <span class="detail">(non-sponsor &mdash; 96 reg. + ~55 expected)</span></span>
+      <span class="val" style="color:#9b6dd7;">151</span>
+    </div>
+    <div class="formula-row">
+      <span class="label-text">Media / Press <span class="detail">(internal quota &mdash; 109 registered today)</span></span>
+      <span class="val" style="color:#8b6aaf;">450</span>
+    </div>
+    <div class="formula-row">
+      <span class="label-text">Ambassadors <span class="detail">(LUMA &mdash; 221 registered today)</span></span>
+      <span class="val" style="color:#3a9a5c;">250</span>
+    </div>
+    <div class="formula-row">
+      <span class="label-text">Dev campaign <span class="detail">(ongoing since Mar 17 &mdash; 250 registered)</span></span>
+      <span class="val" style="color:#3b8cd4;">250</span>
+    </div>
+    <div class="formula-row">
+      <span class="label-text">Speaker +1 / VIP codes <span class="detail">(74 partner codes used)</span></span>
+      <span class="val">74</span>
+    </div>
+    <div class="formula-row">
+      <span class="label-text">Students <span class="detail">(school campaign &mdash; 118 registered)</span></span>
+      <span class="val" style="color:#607080;">118</span>
+    </div>
     <div class="formula-row sep"></div>
-    <div class="formula-row total"><span class="label-text">Total committed</span><span class="val">2,777</span></div>
+    <div class="formula-row total">
+      <span class="label-text">Total committed</span>
+      <span class="val">2,934</span>
+    </div>
   </div>
 </div>
+
+<!-- FINAL CALC -->
 <div class="formula-section">
   <h2>Step 2 &mdash; Free tickets still to distribute</h2>
   <div class="formula-box">
-    <div class="formula-row"><span class="label-text">Venue capacity target</span><span class="val">5,000</span></div>
-    <div class="formula-row"><span class="label-text">Total committed</span><span class="val">&minus; 2,777</span></div>
+    <div class="formula-row">
+      <span class="label-text">Venue capacity target</span>
+      <span class="val">4,300</span>
+    </div>
+    <div class="formula-row">
+      <span class="label-text">Total committed</span>
+      <span class="val">&minus; 2,934</span>
+    </div>
     <div class="formula-row sep"></div>
-    <div class="formula-row result"><span class="label-text">Free tickets to distribute</span><span class="val">2,223</span></div>
+    <div class="formula-row result">
+      <span class="label-text">Free tickets to distribute</span>
+      <span class="val">1,366</span>
+    </div>
   </div>
 </div>
+
+<!-- CURRENT REGISTRATIONS -->
 <div class="composition">
-  <h2>Current registrations by type (1,671 today)</h2>
+  <h2>Current registrations by type (1,947 today)</h2>
   <div class="bar-stack">
-    <div class="seg" style="width:25.4%;background:#e05555;">425</div>
-    <div class="seg" style="width:19.4%;background:#e8a838;">324</div>
-    <div class="seg" style="width:5.7%;background:#9b6dd7;">96</div>
-    <div class="seg" style="width:12.7%;background:#3a9a5c;">212</div>
-    <div class="seg" style="width:18.6%;background:#557766;">310</div>
-    <div class="seg" style="width:9.9%;background:#3b8cd4;">165</div>
-    <div class="seg" style="width:5.3%;background:#8b6aaf;">89</div>
-    <div class="seg" style="width:3.0%;background:#607080;">50</div>
+    <div class="seg" style="width:22.4%;background:#e05555;">437</div>
+    <div class="seg" style="width:19.6%;background:#e8a838;">381</div>
+    <div class="seg" style="width:4.9%;background:#9b6dd7;">96</div>
+    <div class="seg" style="width:11.4%;background:#3a9a5c;">221</div>
+    <div class="seg" style="width:13.4%;background:#557766;">261</div>
+    <div class="seg" style="width:3.8%;background:#cc8866;">74</div>
+    <div class="seg" style="width:12.8%;background:#3b8cd4;">250</div>
+    <div class="seg" style="width:5.6%;background:#8b6aaf;">109</div>
+    <div class="seg" style="width:6.1%;background:#607080;">118</div>
   </div>
   <div class="legend">
-    <div class="legend-item"><div class="dot" style="background:#e05555;"></div><strong>425</strong> Paid</div>
-    <div class="legend-item"><div class="dot" style="background:#e8a838;"></div><strong>324</strong> Sponsors</div>
+    <div class="legend-item"><div class="dot" style="background:#e05555;"></div><strong>437</strong> Paid</div>
+    <div class="legend-item"><div class="dot" style="background:#e8a838;"></div><strong>381</strong> Sponsors</div>
     <div class="legend-item"><div class="dot" style="background:#9b6dd7;"></div><strong>96</strong> Speakers</div>
-    <div class="legend-item"><div class="dot" style="background:#3a9a5c;"></div><strong>212</strong> Ambassadors</div>
-    <div class="legend-item"><div class="dot" style="background:#557766;"></div><strong>310</strong> Other Partners</div>
-    <div class="legend-item"><div class="dot" style="background:#3b8cd4;"></div><strong>165</strong> Dev</div>
-    <div class="legend-item"><div class="dot" style="background:#8b6aaf;"></div><strong>89</strong> Media</div>
-    <div class="legend-item"><div class="dot" style="background:#607080;"></div><strong>50</strong> Students</div>
+    <div class="legend-item"><div class="dot" style="background:#3a9a5c;"></div><strong>221</strong> Ambassadors</div>
+    <div class="legend-item"><div class="dot" style="background:#557766;"></div><strong>261</strong> Other Partners</div>
+    <div class="legend-item"><div class="dot" style="background:#cc8866;"></div><strong>74</strong> Speaker +1</div>
+    <div class="legend-item"><div class="dot" style="background:#3b8cd4;"></div><strong>250</strong> Dev</div>
+    <div class="legend-item"><div class="dot" style="background:#8b6aaf;"></div><strong>109</strong> Media</div>
+    <div class="legend-item"><div class="dot" style="background:#607080;"></div><strong>118</strong> Students</div>
   </div>
 </div>
+
+<!-- ASSUMPTIONS -->
 <div class="assumptions">
   <h3>Assumptions &amp; sources</h3>
-  <p><span class="hl">Paid (700)</span> &mdash; Sales projection. 425 sold today; target 700 by April 14.</p>
-  <p><span class="hl">Sponsors (941)</span> &mdash; Full contract allocation from CS portal (326/941 claimed). Conservative: counts all 941 even if some go unused.</p>
+  <p><span class="hl">Paid (700)</span> &mdash; Sales projection. 437 sold today; target 700 by April 14.</p>
+  <p><span class="hl">Sponsors (941)</span> &mdash; Full contract allocation from CS portal (381/941 claimed). Conservative: counts all 941 even if some go unused.</p>
   <p><span class="hl">Speakers (151)</span> &mdash; 96 registered + ~55 expected. Only non-sponsor speakers counted here.</p>
-  <p><span class="hl">Media (450)</span> &mdash; Internal quota. 89 registered today.</p>
-  <p><span class="hl">Ambassadors (250)</span> &mdash; Internal target. 212 registered via LUMA today.</p>
-  <p><span class="hl">Dev (165)</span> &mdash; Ongoing free ticket campaign since March 17 (PRO Guest Website, no promo code).</p>
-  <p><span class="hl">Speaker +1 (70)</span> &mdash; Partners with speaker/VIP discount codes (jpmorgan, bofa, circle, etc.).</p>
-  <p><span class="hl">Students (50)</span> &mdash; School campaign registrations.</p>
+  <p><span class="hl">Media (450)</span> &mdash; Internal quota. 109 registered today.</p>
+  <p><span class="hl">Ambassadors (250)</span> &mdash; Internal target. 221 registered via LUMA today.</p>
+  <p><span class="hl">Dev (250)</span> &mdash; Ongoing free ticket campaign since March 17 (PRO Guest Website, no promo code). 250 registered.</p>
+  <p><span class="hl">Speaker +1 (74)</span> &mdash; Partners with speaker/VIP discount codes (jpmorgan, bofa, circle, google, moodys, etc.).</p>
+  <p><span class="hl">Students (118)</span> &mdash; School campaign registrations.</p>
   <p><span class="hl">No double-counting</span> &mdash; Sponsor-speakers are counted under Sponsors only. Speaker +1 codes are separate from speaker tickets.</p>
 </div>
+
 </body>
 </html>
